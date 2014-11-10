@@ -13,28 +13,6 @@ import static org.junit.Assert.*;
 
 public class UnderPopulationRuleTest {
     
-    
-    public UnderPopulationRuleTest() {
-    }
-           
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-                
-    }
-    
-    @After
-    public void tearDown() {
-    }
-
     @Test
     public void testUnderPopulationLessThanTwo(){
         Cell cell = new Cell();
@@ -51,10 +29,4 @@ public class UnderPopulationRuleTest {
         Underpopulated condition = new Underpopulated();
         Assert.assertFalse(condition.checkCell(cell));
     }
-    
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
 }
