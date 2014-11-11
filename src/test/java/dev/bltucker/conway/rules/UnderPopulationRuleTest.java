@@ -3,13 +3,8 @@ package dev.bltucker.conway.rules;
 import dev.bltucker.conway.cells.Cell;
 import static dev.bltucker.conway.cells.Direction.RIGHT;
 import static dev.bltucker.conway.cells.Direction.TOP;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 public class UnderPopulationRuleTest {
     
