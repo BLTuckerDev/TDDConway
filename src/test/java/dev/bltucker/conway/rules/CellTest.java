@@ -18,13 +18,12 @@ public class CellTest {
         Assert.assertEquals(2, cell.getNeighborCount());
     }
     
+    
     @Test(expected=IllegalArgumentException.class)
     public void DoNotAddANeighborTwiceTest(){
         
         Cell cell = new Cell();
         cell.addNeighbor(Direction.TOP);
         cell.addNeighbor(Direction.TOP);            
-    }
-    
-    
+    }   
 }
