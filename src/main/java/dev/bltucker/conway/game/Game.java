@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 public final class Game implements Observer{
     
@@ -21,44 +22,38 @@ public final class Game implements Observer{
     private final UserInterface ui;
     private final GameGrid grid;
     
-    private CellCondition homeoStasis = new Homeostasis();
-    private CellCondition overCrowded = new Overcrowded();
-    private CellCondition reproduction = new Reproduction();
-    private CellCondition underPopulation = new Underpopulated();
+    private final CellCondition homeoStasis = new Homeostasis();
+    private final CellCondition overCrowded = new Overcrowded();
+    private final CellCondition reproduction = new Reproduction();
+    private final CellCondition underPopulation = new Underpopulated();
     
     
     public Game(int width, int height, TickMethod tickmethod, UserInterface ui){
         
-        this.grid = new GameGrid(100, 100);
+        this.grid = new GameGrid(width, height);
         this.tickMethod = tickmethod;
         this.ui = ui;
-        
-        
     }
     
     
     public void start(){
         tickMethod.addObserver(this);
         tickMethod.start();
-        
-        
     }
     
 
     @Override
     public void update(Observable o, Object arg) {
 
-        System.out.println("Do Tick");
-        
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
                 
                 Cell cell = grid.getCell(i, j);
-                applyRules(cell, j, j);
+                applyRules(cell, i, j);
             }
-        }
+        }        
         
-        
+        ui.draw(grid);
         
     }
 
@@ -70,16 +65,22 @@ public final class Game implements Observer{
         
         if(homeoStasis.checkCell(cell)){
             //we do nothing
+            System.out.println("Cell lives");
         } else if(overCrowded.checkCell(cell)){
             //kill the cell
-            grid.killCell(cell, row, column);
+            System.out.println("Cell Dies");
+            grid.killCell(row, column);
         } else if(reproduction.checkCell(cell)){
             //create the cell
-            grid.CreateCell(cell, row, column);
+            System.out.println("Cell Created");
+            grid.CreateCell(row, column);
         } else if(underPopulation.checkCell(cell)){
             //kill the cell
-            grid.killCell(cell, row, column);
+            System.out.println("Cell DIes");
+            grid.killCell( row, column);
         }
+        
+        System.out.println("******************************");
         
     }
     
@@ -97,5 +98,19 @@ public final class Game implements Observer{
     
     public int getHeight(){
         return this.grid.getHeight();
+    }
+
+    void randomInitialization() {
+
+        Random random = new Random(System.currentTimeMillis());
+        
+        for(int i = 0; i < grid.getWidth(); i++){
+            for(int j = 0; j < grid.getHeight(); j++){
+                if(random.nextBoolean()){
+                    grid.CreateCell( i, j);
+                }                               
+            }
+        }
+        
     }
 }

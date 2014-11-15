@@ -1,6 +1,7 @@
 package dev.bltucker.conway.rules;
 
 import dev.bltucker.conway.cells.Cell;
+import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
 import junit.framework.Assert;
 import org.junit.Test;
@@ -19,11 +20,12 @@ public class GameGridTest {
     public void AddCellToGrid(){
         
         GameGrid grid = new GameGrid(100, 100);
-        Cell cell = new Cell();
         
-        grid.CreateCell(cell, 1, 3);
+        grid.CreateCell(1, 3);
         
-        Assert.assertEquals(cell, grid.getCell(1,3));        
+        Cell cell = grid.getCell(1, 3);
+        
+        Assert.assertTrue(cell.getState().equals(State.LIVE));
     }
     
     
@@ -33,7 +35,7 @@ public class GameGridTest {
         GameGrid grid = new GameGrid(100,100);
         Cell cell = new Cell();
         
-        grid.CreateCell(cell, 101, 0);        
+        grid.CreateCell(101, 0);        
     }
     
     @Test(expected = IllegalArgumentException.class)
@@ -41,7 +43,7 @@ public class GameGridTest {
         GameGrid grid = new GameGrid(100,100);
         Cell cell = new Cell();
         
-        grid.CreateCell(cell, 0, 101);   
+        grid.CreateCell(0, 101);   
     }
     
 }

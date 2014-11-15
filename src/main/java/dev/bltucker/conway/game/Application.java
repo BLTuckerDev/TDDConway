@@ -10,9 +10,13 @@ public final class Application {
     
     public static void main(String[] args){
      
-        TickMethod tickMethod = new TimedTick(10000);
+        TickMethod tickMethod = new TimedTick(5000);
         UserInterface ui = new CommandLine();
-        Game game = new Game(100, 100, tickMethod, ui);
+        Game game = new Game(10, 10, tickMethod, ui);
+        game.randomInitialization();
+        game.start();
+        
+        while(true){}
         
     }
 }

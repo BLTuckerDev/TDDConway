@@ -19,13 +19,9 @@ public class CommandLineTest {
         
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
-                Cell cell = new Cell();
-                
                 if(random.nextBoolean()){
-                    cell.setState(State.LIVE);
+                    grid.CreateCell( i, j);
                 }                               
-                
-                grid.CreateCell(cell, i, j);
             }
         }
         

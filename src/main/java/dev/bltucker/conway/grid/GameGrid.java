@@ -10,6 +10,12 @@ public class GameGrid {
         
     public GameGrid(int width, int height){
         this.grid = new Cell[width][height];
+            
+        for(int i = 0; i < width; i++){
+            for(int j = 0; j < height; j++){
+                grid[i][j] = new Cell();
+            }
+        }
     }
 
     
@@ -23,11 +29,13 @@ public class GameGrid {
     }    
 
     
-    public void CreateCell(Cell cell, int x, int y) {
+    public void CreateCell(int x, int y) {
         
         if(!this.isInBounds(x, y)){
             throw new IllegalArgumentException("Out of bounds!");
         }
+        
+        Cell cell = this.getCell(x, y);
         
         cell.setState(State.LIVE);
                
@@ -82,13 +90,14 @@ public class GameGrid {
 
     
     
-    public void killCell(Cell cell, int x, int y){
+    public void killCell(int x, int y){
         
         
         if(!this.isInBounds(x, y)){
             throw new IllegalArgumentException("Out of bounds!");
         }
         
+        Cell cell = this.getCell(x, y);
         cell.setState(State.DEAD);
                
         
@@ -137,11 +146,6 @@ public class GameGrid {
                 left.RemoveNeighbor(Direction.RIGHT);
             }            
         }
-        
-        
-        
-        
-        
     }
     
     
@@ -157,6 +161,11 @@ public class GameGrid {
     
     
     private boolean isInBounds(int x, int y){
+        
+        if(x < 0 || y < 0){
+            return false;
+        }
+                
         return x < this.grid.length && y < this.grid[0].length;
     }    
 }

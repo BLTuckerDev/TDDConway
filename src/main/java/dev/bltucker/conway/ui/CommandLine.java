@@ -31,9 +31,9 @@ public final class CommandLine implements UserInterface {
     public void drawCell(Cell cell){
     
         if(cell.getState().equals(State.LIVE)){
-            System.out.print("O");
+            System.out.print("1");
         } else {
-            System.out.print("X");
+            System.out.print("0");
         }
     }
     
