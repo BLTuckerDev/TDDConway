@@ -23,7 +23,7 @@ public class GameGrid {
     }    
 
     
-    public void addCell(Cell cell, int x, int y) {
+    public void CreateCell(Cell cell, int x, int y) {
         
         if(!this.isInBounds(x, y)){
             throw new IllegalArgumentException("Out of bounds!");
@@ -82,7 +82,7 @@ public class GameGrid {
 
     
     
-    public void removeCell(Cell cell, int x, int y){
+    public void killCell(Cell cell, int x, int y){
         
         
         if(!this.isInBounds(x, y)){

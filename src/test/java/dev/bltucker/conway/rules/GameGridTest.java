@@ -21,7 +21,7 @@ public class GameGridTest {
         GameGrid grid = new GameGrid(100, 100);
         Cell cell = new Cell();
         
-        grid.addCell(cell, 1, 3);
+        grid.CreateCell(cell, 1, 3);
         
         Assert.assertEquals(cell, grid.getCell(1,3));        
     }
@@ -33,7 +33,7 @@ public class GameGridTest {
         GameGrid grid = new GameGrid(100,100);
         Cell cell = new Cell();
         
-        grid.addCell(cell, 101, 0);        
+        grid.CreateCell(cell, 101, 0);        
     }
     
     @Test(expected = IllegalArgumentException.class)
@@ -41,7 +41,7 @@ public class GameGridTest {
         GameGrid grid = new GameGrid(100,100);
         Cell cell = new Cell();
         
-        grid.addCell(cell, 0, 101);   
+        grid.CreateCell(cell, 0, 101);   
     }
     
 }

@@ -25,7 +25,7 @@ public class CommandLineTest {
                     cell.setState(State.LIVE);
                 }                               
                 
-                grid.addCell(cell, i, j);
+                grid.CreateCell(cell, i, j);
             }
         }
         

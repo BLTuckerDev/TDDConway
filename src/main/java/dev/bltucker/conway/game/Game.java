@@ -21,8 +21,11 @@ public final class Game implements Observer{
     private final UserInterface ui;
     private final GameGrid grid;
     
+    private CellCondition homeoStasis = new Homeostasis();
+    private CellCondition overCrowded = new Overcrowded();
+    private CellCondition reproduction = new Reproduction();
+    private CellCondition underPopulation = new Underpopulated();
     
-    private final List<CellCondition> conditions = new ArrayList<>();
     
     public Game(int width, int height, TickMethod tickmethod, UserInterface ui){
         
@@ -31,14 +34,12 @@ public final class Game implements Observer{
         this.ui = ui;
         
         
-        conditions.add(new Homeostasis());
-        conditions.add(new Overcrowded());
-        conditions.add(new Reproduction());
-        conditions.add(new Underpopulated());
-        
-        
+    }
+    
+    
+    public void start(){
         tickMethod.addObserver(this);
-        
+        tickMethod.start();
         
         
     }
@@ -53,7 +54,7 @@ public final class Game implements Observer{
             for(int j = 0; j < grid.getHeight(); j++){
                 
                 Cell cell = grid.getCell(i, j);
-                
+                applyRules(cell, j, j);
             }
         }
         
@@ -67,7 +68,18 @@ public final class Game implements Observer{
         //set each cell's state
         //add or remove neighbors as needed.
         
-        
+        if(homeoStasis.checkCell(cell)){
+            //we do nothing
+        } else if(overCrowded.checkCell(cell)){
+            //kill the cell
+            grid.killCell(cell, row, column);
+        } else if(reproduction.checkCell(cell)){
+            //create the cell
+            grid.CreateCell(cell, row, column);
+        } else if(underPopulation.checkCell(cell)){
+            //kill the cell
+            grid.killCell(cell, row, column);
+        }
         
     }
     
