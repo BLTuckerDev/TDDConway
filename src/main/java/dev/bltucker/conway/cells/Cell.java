@@ -9,11 +9,19 @@ public final class Cell {
     
     private final Set<Direction> neighbors = new HashSet<>();
     private final UUID identifier;
+    private State state = State.DEAD;
     
     public Cell(){
         this.identifier = UUID.randomUUID();
     }
-      
+
+    public State getState() {
+        return state;
+    }
+
+    public void setState(State state) {
+        this.state = state;
+    }
     
     public void addNeighbor(Direction direction) {
         
