@@ -9,6 +9,14 @@ import dev.bltucker.conway.ui.UserInterface;
 public final class Application {
 
     
+    //default to 100x100
+    //use timed method
+    //and swing window
+    
+    //java -jar conway {width} {height} {ui} {tickmethod}
+    
+    //eventually feed it an input file rather than the random seed that we currently have.
+    
     public static void main(String[] args){
         
         System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
