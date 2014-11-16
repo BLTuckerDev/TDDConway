@@ -94,18 +94,18 @@ public final class Game implements Observer{
 //        grid.createCell(1, 0);
 //        grid.createCell(0, 0);
 //        grid.createCell(0,1);
-        
-        grid.createCell(3, 2);
-        grid.createCell(3, 3);
-        grid.createCell(3, 4);
-//        Random random = new Random(System.currentTimeMillis());
 //        
-//        for(int i = 0; i < grid.getWidth(); i++){
-//            for(int j = 0; j < grid.getHeight(); j++){
-//                if(random.nextBoolean()){
-//                    grid.createCell( i, j);
-//                }                               
-//            }
-//        }
+//        grid.createCell(3, 2);
+//        grid.createCell(3, 3);
+//        grid.createCell(3, 4);
+        Random random = new Random(System.currentTimeMillis());
+        
+        for(int i = 0; i < grid.getWidth(); i++){
+            for(int j = 0; j < grid.getHeight(); j++){
+                if(random.nextBoolean()){
+                    grid.createCell( i, j);
+                }                               
+            }
+        }
     }
 }

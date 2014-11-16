@@ -23,10 +23,13 @@ public final class Application {
      
         TickMethod tickMethod = new TimedTick(1000);
         UserInterface ui = new CommandLine();
-     
-        ui = new SwingWindow(10, 10);
         
-        Game game = new Game(10, 10, tickMethod, ui);
+        int width = 10;
+        int height = 10;
+     
+        ui = new SwingWindow(width, height);
+        
+        Game game = new Game(width, height, tickMethod, ui);
         game.randomInitialization();
         game.start();
         

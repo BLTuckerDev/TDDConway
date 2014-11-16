@@ -20,13 +20,14 @@ public final class CommandLine implements UserInterface {
     public void draw(GameGrid grid) {
         
         clearScreen();
-       
-        for(int i = grid.getWidth(); i > 0 ; i--){
-            for(int j = 0; j < grid.getHeight(); j++){                
-                Cell cell = grid.getCell(i-1, j);
+        
+        
+        for(int i = grid.getHeight(); i > 0; i--){
+            for(int j = 0; j < grid.getWidth(); j++){
+                Cell cell = grid.getCell(j, i-1);
                 drawCell(cell);
-            }            
-            System.out.print(System.lineSeparator());
+            }
+            System.out.println(System.lineSeparator());
         }
     }
     
