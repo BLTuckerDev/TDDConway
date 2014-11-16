@@ -23,6 +23,10 @@ public final class Cell {
         this.state = state;
     }
     
+    public void toggleState(){
+        this.setState(State.getOppositeState(this.getState()));
+    }
+    
     public void addNeighbor(Direction direction) {
         
         if(!neighbors.add(direction)){

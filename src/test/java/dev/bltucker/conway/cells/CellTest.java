@@ -35,4 +35,16 @@ public class CellTest {
         
         Assert.assertEquals(1, cell.getNeighborCount());
     }
+    
+    @Test
+    public void toggleStateTest(){
+        Cell cell = new Cell();
+        
+        cell.setState(State.LIVE);
+        cell.toggleState();
+        
+        Assert.assertEquals(State.DEAD, cell.getState());
+        
+    }
+    
 }

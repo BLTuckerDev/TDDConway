@@ -27,7 +27,33 @@ public class GameGrid {
     public int getHeight() {
         return this.grid[0].length;
     }    
+    
+    
+    public void createCell(int x, int y) {
+        this.toggleCellState(x, y);
+    }
 
+    
+    public void killCell(int x, int y){
+        this.toggleCellState(x, y);
+    }
+    
+    
+    private void toggleCellState(int x, int y){
+        if(!this.isInBounds(x, y)){
+            throw new IllegalArgumentException("Out of bounds!");
+        }
+        
+        Cell cell = this.getCell(x, y);
+        cell.toggleState();
+        
+        updateNeighbor(x, y+1, Direction.TOP, cell);
+        updateNeighbor(x+1, y, Direction.RIGHT, cell);
+        updateNeighbor(x, y-1, Direction.DOWN, cell);
+        updateNeighbor(x-1, y, Direction.LEFT, cell);
+        
+    }
+    
     
     private void updateNeighbor(int neighborRow, int neighborColumn, Direction neighborDirection, Cell currentCell){
         
@@ -37,85 +63,11 @@ public class GameGrid {
             if(neighbor.getState().equals(State.LIVE)){
                 currentCell.addNeighbor(neighborDirection);
                 neighbor.addNeighbor(Direction.getOppositeDirection(neighborDirection));
+            } else {
+                currentCell.removeNeighbor(neighborDirection);
+                neighbor.removeNeighbor(Direction.getOppositeDirection(neighborDirection));
             }
         }        
-    }
-    
-    public void createCell(int x, int y) {
-        
-        if(!this.isInBounds(x, y)){
-            throw new IllegalArgumentException("Out of bounds!");
-        }
-        
-        Cell cell = this.getCell(x, y);        
-        cell.setState(State.LIVE);
-        
-        
-        updateNeighbor(x, y+1, Direction.TOP, cell);
-        updateNeighbor(x+1, y, Direction.RIGHT, cell);
-        updateNeighbor(x, y-1, Direction.DOWN, cell);
-        updateNeighbor(x-1, y, Direction.LEFT, cell);
-               
-        
-    }
-    
-    
-    public void killCell(int x, int y){
-        
-        
-        if(!this.isInBounds(x, y)){
-            throw new IllegalArgumentException("Out of bounds!");
-        }
-        
-        Cell cell = this.getCell(x, y);
-        cell.setState(State.DEAD);
-               
-        
-        //check for neighbors
-        
-        if(this.isInBounds(x, y+1)){
-            //top neighbor
-            Cell top = this.getCell(x, y+1);
-            
-            if(top.getState().equals(State.LIVE)){
-                cell.removeNeighbor(Direction.TOP);
-                top.removeNeighbor(Direction.DOWN);
-            }
-        }
-        
-        if(this.isInBounds(x + 1, y)){
-            //right neighbor
-            
-            Cell right = this.getCell(x+1, y);
-            
-            if(right.getState().equals(State.LIVE)){
-                cell.removeNeighbor(Direction.RIGHT);
-                right.removeNeighbor(Direction.LEFT);
-            }            
-        }
-        
-        if(this.isInBounds(x, y -1)){
-            //bottom neighbor
-            
-            Cell bottom = this.getCell(x, y-1);
-            
-            if(bottom.getState().equals(State.LIVE)){
-                cell.removeNeighbor(Direction.DOWN);
-                bottom.removeNeighbor(Direction.TOP);
-            }
-        
-        }
-        
-        if(this.isInBounds(x-1, y)){
-            //left neighbor
-        
-            Cell left = this.getCell(x-1, y);
-            
-            if(left.getState().equals(State.LIVE)){
-                cell.removeNeighbor(Direction.LEFT);
-                left.removeNeighbor(Direction.RIGHT);
-            }            
-        }
     }
     
     
