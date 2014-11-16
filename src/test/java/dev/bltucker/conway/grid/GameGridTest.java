@@ -1,15 +1,14 @@
-package dev.bltucker.conway.rules;
+package dev.bltucker.conway.grid;
 
 import dev.bltucker.conway.cells.Cell;
 import dev.bltucker.conway.cells.State;
-import dev.bltucker.conway.grid.GameGrid;
 import junit.framework.Assert;
 import org.junit.Test;
 
 public class GameGridTest {
 
     @Test
-    public void GridInitializationTest(){
+    public void gridInitializationTest(){
         
         GameGrid grid = new GameGrid(100,100);
         boolean initialized = grid.getWidth() == 100 && grid.getHeight() == 100;
@@ -17,11 +16,11 @@ public class GameGridTest {
     }
     
     @Test
-    public void AddCellToGrid(){
+    public void addCellToGrid(){
         
         GameGrid grid = new GameGrid(100, 100);
         
-        grid.CreateCell(1, 3);
+        grid.createCell(1, 3);
         
         Cell cell = grid.getCell(1, 3);
         
@@ -30,20 +29,35 @@ public class GameGridTest {
     
     
     @Test(expected = IllegalArgumentException.class)
-    public void AddCellOutsideOfGridRows(){
+    public void addCellOutsideOfGridRows(){
         
         GameGrid grid = new GameGrid(100,100);
         Cell cell = new Cell();
         
-        grid.CreateCell(101, 0);        
+        grid.createCell(101, 0);        
     }
     
     @Test(expected = IllegalArgumentException.class)
-    public void AddCellOutsideOfGridColumns(){
+    public void addCellOutsideOfGridColumns(){
         GameGrid grid = new GameGrid(100,100);
         Cell cell = new Cell();
         
-        grid.CreateCell(0, 101);   
+        grid.createCell(0, 101);   
+    }
+    
+    @Test
+    public void killCell(){
+        GameGrid grid = new GameGrid(10,10);
+        grid.createCell(1, 1);
+        
+        Cell cell = grid.getCell(1, 1);
+        
+        Assert.assertEquals(State.LIVE, cell.getState());
+        
+        grid.killCell(1, 1);
+        
+        Assert.assertEquals(State.DEAD, cell.getState());
+        
     }
     
 }

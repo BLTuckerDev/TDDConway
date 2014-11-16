@@ -29,65 +29,35 @@ public class GameGrid {
     }    
 
     
-    public void CreateCell(int x, int y) {
+    private void updateNeighbor(int neighborRow, int neighborColumn, Direction neighborDirection, Cell currentCell){
+        
+        if(this.isInBounds(neighborRow, neighborColumn)){
+            Cell neighbor = this.getCell(neighborRow, neighborColumn);
+            
+            if(neighbor.getState().equals(State.LIVE)){
+                currentCell.addNeighbor(neighborDirection);
+                neighbor.addNeighbor(Direction.getOppositeDirection(neighborDirection));
+            }
+        }        
+    }
+    
+    public void createCell(int x, int y) {
         
         if(!this.isInBounds(x, y)){
             throw new IllegalArgumentException("Out of bounds!");
         }
         
-        Cell cell = this.getCell(x, y);
-        
+        Cell cell = this.getCell(x, y);        
         cell.setState(State.LIVE);
+        
+        
+        updateNeighbor(x, y+1, Direction.TOP, cell);
+        updateNeighbor(x+1, y, Direction.RIGHT, cell);
+        updateNeighbor(x, y-1, Direction.DOWN, cell);
+        updateNeighbor(x-1, y, Direction.LEFT, cell);
                
         
-        //check for neighbors
-        
-        if(this.isInBounds(x, y+1)){
-            //top neighbor
-            Cell top = this.getCell(x, y+1);
-            
-            if(top.getState().equals(State.LIVE)){
-                cell.addNeighbor(Direction.TOP);
-                top.addNeighbor(Direction.DOWN);
-            }
-        }
-        
-        if(this.isInBounds(x + 1, y)){
-            //right neighbor
-            
-            Cell right = this.getCell(x+1, y);
-            
-            if(right.getState().equals(State.LIVE)){
-                cell.addNeighbor(Direction.RIGHT);
-                right.addNeighbor(Direction.LEFT);
-            }            
-        }
-        
-        if(this.isInBounds(x, y -1)){
-            //bottom neighbor
-            
-            Cell bottom = this.getCell(x, y-1);
-            
-            if(bottom.getState().equals(State.LIVE)){
-                cell.addNeighbor(Direction.DOWN);
-                bottom.addNeighbor(Direction.TOP);
-            }
-        
-        }
-        
-        if(this.isInBounds(x-1, y)){
-            //left neighbor
-        
-            Cell left = this.getCell(x-1, y);
-            
-            if(left.getState().equals(State.LIVE)){
-                cell.addNeighbor(Direction.LEFT);
-                left.addNeighbor(Direction.RIGHT);
-            }            
-        }
-        
     }
-
     
     
     public void killCell(int x, int y){
@@ -108,8 +78,8 @@ public class GameGrid {
             Cell top = this.getCell(x, y+1);
             
             if(top.getState().equals(State.LIVE)){
-                cell.RemoveNeighbor(Direction.TOP);
-                top.RemoveNeighbor(Direction.DOWN);
+                cell.removeNeighbor(Direction.TOP);
+                top.removeNeighbor(Direction.DOWN);
             }
         }
         
@@ -119,8 +89,8 @@ public class GameGrid {
             Cell right = this.getCell(x+1, y);
             
             if(right.getState().equals(State.LIVE)){
-                cell.RemoveNeighbor(Direction.RIGHT);
-                right.RemoveNeighbor(Direction.LEFT);
+                cell.removeNeighbor(Direction.RIGHT);
+                right.removeNeighbor(Direction.LEFT);
             }            
         }
         
@@ -130,8 +100,8 @@ public class GameGrid {
             Cell bottom = this.getCell(x, y-1);
             
             if(bottom.getState().equals(State.LIVE)){
-                cell.RemoveNeighbor(Direction.DOWN);
-                bottom.RemoveNeighbor(Direction.TOP);
+                cell.removeNeighbor(Direction.DOWN);
+                bottom.removeNeighbor(Direction.TOP);
             }
         
         }
@@ -142,12 +112,11 @@ public class GameGrid {
             Cell left = this.getCell(x-1, y);
             
             if(left.getState().equals(State.LIVE)){
-                cell.RemoveNeighbor(Direction.LEFT);
-                left.RemoveNeighbor(Direction.RIGHT);
+                cell.removeNeighbor(Direction.LEFT);
+                left.removeNeighbor(Direction.RIGHT);
             }            
         }
     }
-    
     
     
     public Cell getCell(int x, int y) {

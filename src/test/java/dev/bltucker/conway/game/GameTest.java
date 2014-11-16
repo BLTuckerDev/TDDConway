@@ -1,6 +1,5 @@
-package dev.bltucker.conway.rules;
+package dev.bltucker.conway.game;
 
-import dev.bltucker.conway.game.Game;
 import dev.bltucker.conway.tickmethods.TickMethod;
 import dev.bltucker.conway.tickmethods.TimedTick;
 import dev.bltucker.conway.ui.CommandLine;

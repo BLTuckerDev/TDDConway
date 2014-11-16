@@ -1,12 +1,9 @@
-package dev.bltucker.conway.rules;
+package dev.bltucker.conway.cells;
 
-import dev.bltucker.conway.cells.Cell;
-import dev.bltucker.conway.cells.Direction;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class CellTest {
-
   
     @Test
     public void CellNeighborCountTest(){
@@ -25,5 +22,17 @@ public class CellTest {
         Cell cell = new Cell();
         cell.addNeighbor(Direction.TOP);
         cell.addNeighbor(Direction.TOP);            
-    }   
+    }
+    
+    
+    @Test
+    public void RemoveNeighborTest(){
+        
+        Cell cell = new Cell();
+        cell.addNeighbor(Direction.TOP);
+        cell.addNeighbor(Direction.DOWN);
+        cell.removeNeighbor(Direction.TOP);
+        
+        Assert.assertEquals(1, cell.getNeighborCount());
+    }
 }

@@ -1,4 +1,4 @@
-package dev.bltucker.conway.rules;
+package dev.bltucker.conway.ui;
 
 import dev.bltucker.conway.cells.Cell;
 import dev.bltucker.conway.cells.State;
@@ -20,7 +20,7 @@ public class CommandLineTest {
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
                 if(random.nextBoolean()){
-                    grid.CreateCell( i, j);
+                    grid.createCell( i, j);
                 }                               
             }
         }

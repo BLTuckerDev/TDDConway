@@ -33,9 +33,8 @@ public final class Cell {
     public int getNeighborCount() {        
         return this.neighbors.size();
     }
-    
-    
-    public void RemoveNeighbor(Direction direction){
+        
+    public void removeNeighbor(Direction direction){
         this.neighbors.remove(direction);
     }
 
