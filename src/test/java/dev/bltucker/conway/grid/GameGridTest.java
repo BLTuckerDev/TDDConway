@@ -25,6 +25,7 @@ public class GameGridTest {
         Cell cell = grid.getCell(1, 3);
         
         Assert.assertTrue(cell.getState().equals(State.LIVE));
+        Assert.assertEquals(0, cell.getLiveNeighborCount());
     }
 
     
@@ -32,11 +33,14 @@ public class GameGridTest {
     public void addCellsNextToEachOther(){
         GameGrid grid = new GameGrid(10,10);
         
-        grid.createCell(1, 1);
-        grid.createCell(1, 2);
+        grid.createCell(3, 2);
+        grid.createCell(3, 3);
+        grid.createCell(3, 4);
         
         Assert.assertTrue(true);
-        
+        Assert.assertEquals(1, grid.getCell(3,2).getLiveNeighborCount());
+        Assert.assertEquals(2, grid.getCell(3, 3).getLiveNeighborCount());
+        Assert.assertEquals(1, grid.getCell(3, 4).getLiveNeighborCount());
     }
     
     @Test(expected = IllegalArgumentException.class)

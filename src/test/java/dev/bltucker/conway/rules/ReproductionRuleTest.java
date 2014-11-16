@@ -11,9 +11,9 @@ public class ReproductionRuleTest {
     @Test
     public void WillReproduce(){
         Cell cell = new Cell();
-        cell.addNeighbor(Direction.TOP);
-        cell.addNeighbor(Direction.RIGHT);
-        cell.addNeighbor(Direction.DOWN);
+        cell.addNeighbor(Direction.NORTH);
+        cell.addNeighbor(Direction.EAST);
+        cell.addNeighbor(Direction.SOUTH);
         
         CellCondition condition = new Reproduction();
         Assert.assertTrue(condition.checkCell(cell));    
@@ -24,7 +24,7 @@ public class ReproductionRuleTest {
     @Test
     public void WillNotReproduce(){
         Cell cell = new Cell();
-        cell.addNeighbor(Direction.TOP);
+        cell.addNeighbor(Direction.NORTH);
         
         CellCondition condition = new Reproduction();
         Assert.assertFalse(condition.checkCell(cell));

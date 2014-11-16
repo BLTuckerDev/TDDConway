@@ -48,10 +48,14 @@ public class GameGrid {
         cell.toggleState();
 
         
-        updateNeighbor(x, y+1, Direction.TOP, cell);
-        updateNeighbor(x+1, y, Direction.RIGHT, cell);
-        updateNeighbor(x, y-1, Direction.DOWN, cell);
-        updateNeighbor(x-1, y, Direction.LEFT, cell);
+        updateNeighbor(x, y+1, Direction.NORTH, cell);
+        updateNeighbor(x+1, y+1, Direction.NORTH_EAST, cell);
+        updateNeighbor(x+1, y, Direction.EAST, cell);
+        updateNeighbor(x+1, y-1, Direction.SOUTH_EAST, cell);
+        updateNeighbor(x, y-1, Direction.SOUTH, cell);
+        updateNeighbor(x-1, y-1, Direction.SOUTH_WEST, cell);
+        updateNeighbor(x-1, y, Direction.WEST, cell);
+        updateNeighbor(x-1, y+1, Direction.NORTH_WEST, cell);
     }
      
     

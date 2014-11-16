@@ -13,10 +13,10 @@ public class OvercrowdedRuleTest {
         
         Cell cell = new Cell();
         cell.setState(State.LIVE);
-        cell.addNeighbor(Direction.TOP);
-        cell.addNeighbor(Direction.DOWN);
-        cell.addNeighbor(Direction.RIGHT);
-        cell.addNeighbor(Direction.LEFT);
+        cell.addNeighbor(Direction.NORTH);
+        cell.addNeighbor(Direction.SOUTH);
+        cell.addNeighbor(Direction.EAST);
+        cell.addNeighbor(Direction.WEST);
         
         Overcrowded overcrowded = new Overcrowded();
         Assert.assertTrue(overcrowded.checkCell(cell));        
@@ -28,9 +28,9 @@ public class OvercrowdedRuleTest {
         
         Cell cell = new Cell();
         cell.setState(State.LIVE);
-        cell.addNeighbor(Direction.TOP);
-        cell.addNeighbor(Direction.RIGHT);
-        cell.addNeighbor(Direction.DOWN);
+        cell.addNeighbor(Direction.NORTH);
+        cell.addNeighbor(Direction.EAST);
+        cell.addNeighbor(Direction.SOUTH);
         CellCondition condition = new Overcrowded();
         Assert.assertFalse(condition.checkCell(cell));
         

@@ -9,8 +9,8 @@ public class CellTest {
     public void CellNeighborCountTest(){
         
         Cell cell = new Cell();
-        cell.addNeighbor(Direction.TOP);
-        cell.addNeighbor(Direction.DOWN);
+        cell.addNeighbor(Direction.NORTH);
+        cell.addNeighbor(Direction.SOUTH);
         
         Assert.assertEquals(2, cell.getLiveNeighborCount());
     }
@@ -20,8 +20,8 @@ public class CellTest {
     public void DoNotAddANeighborTwiceTest(){
         
         Cell cell = new Cell();
-        cell.addNeighbor(Direction.TOP);
-        cell.addNeighbor(Direction.TOP);            
+        cell.addNeighbor(Direction.NORTH);
+        cell.addNeighbor(Direction.NORTH);            
     }
     
     
@@ -29,9 +29,9 @@ public class CellTest {
     public void RemoveNeighborTest(){
         
         Cell cell = new Cell();
-        cell.addNeighbor(Direction.TOP);
-        cell.addNeighbor(Direction.DOWN);
-        cell.removeLiveNeighbor(Direction.TOP);
+        cell.addNeighbor(Direction.NORTH);
+        cell.addNeighbor(Direction.SOUTH);
+        cell.removeLiveNeighbor(Direction.NORTH);
         
         Assert.assertEquals(1, cell.getLiveNeighborCount());
     }

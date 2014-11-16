@@ -5,6 +5,7 @@ import dev.bltucker.conway.cells.Cell;
 import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
 import dev.bltucker.conway.rules.CellCondition;
+import dev.bltucker.conway.rules.Homeostasis;
 import dev.bltucker.conway.rules.Overcrowded;
 import dev.bltucker.conway.rules.Reproduction;
 import dev.bltucker.conway.rules.Underpopulated;
@@ -18,11 +19,12 @@ public final class Game implements Observer{
     
     private final TickMethod tickMethod;
     private final UserInterface ui;
-    private final GameGrid grid;
+    private  GameGrid grid;
     
     private final CellCondition overCrowded = new Overcrowded();
     private final CellCondition reproduction = new Reproduction();
     private final CellCondition underPopulation = new Underpopulated();
+    private final CellCondition homeostasis = new Homeostasis();
     
     
     public Game(int width, int height, TickMethod tickmethod, UserInterface ui){
@@ -42,32 +44,32 @@ public final class Game implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         
+        GameGrid nextGenGrid = new GameGrid(this.getWidth(), this.getHeight());
+        
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
                 Cell cell = grid.getCell(i, j);
-                
-                if(cell.getState().equals(State.LIVE)){
-                    System.out.println("(" + i +"," + j + ")");
-                    System.out.println("Neighbors: " +cell.getLiveNeighborCount());
-                }
-                
-                applyRules(cell, i, j);
+                applyRules(cell, i, j, nextGenGrid);
             }
-        }        
-        ui.draw(grid);
+        }     
+        
+        this.grid = nextGenGrid;
+        ui.draw(nextGenGrid);
     }
 
     
-    private void applyRules(Cell cell, int row, int column){
+    private void applyRules(Cell cell, int row, int column, GameGrid nextGenerationGrid){
              
-        
-        
-        if(overCrowded.checkCell(cell)){
-            grid.killCell(row, column);
+        if(homeostasis.checkCell(cell)){
+            //he lives
+            nextGenerationGrid.createCell(row, column);
+        }else if(overCrowded.checkCell(cell)){
+            //grid.killCell(row, column);
         } else if(reproduction.checkCell(cell)){
-            grid.createCell(row, column);
+            nextGenerationGrid.createCell(row, column);
+           // grid.createCell(row, column);
         } else if(underPopulation.checkCell(cell)){
-            grid.killCell( row, column);
+         //   grid.killCell( row, column);
         }
     }
     
@@ -89,9 +91,9 @@ public final class Game implements Observer{
 
     void randomInitialization() {
 
-        grid.createCell(1, 0);
-        grid.createCell(0, 0);
-        grid.createCell(0,1);
+//        grid.createCell(1, 0);
+//        grid.createCell(0, 0);
+//        grid.createCell(0,1);
         
         grid.createCell(3, 2);
         grid.createCell(3, 3);
