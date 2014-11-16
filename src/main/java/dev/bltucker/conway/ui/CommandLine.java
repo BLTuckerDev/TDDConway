@@ -42,13 +42,8 @@ public final class CommandLine implements UserInterface {
     
     
     public void clearScreen(){
-        try {
-            Runtime.getRuntime().exec("clear");
-//        for(int i = 0; i < 100; i++){
-//            System.out.print(System.lineSeparator());
-//        }
-        } catch (IOException ex) {
-            Logger.getLogger(CommandLine.class.getName()).log(Level.SEVERE, null, ex);
+        for(int i = 0; i < 100; i++){
+            System.out.print(System.lineSeparator());
         }
     }
 }

@@ -47,9 +47,8 @@ public final class Game implements Observer{
 
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
-                
                 Cell cell = grid.getCell(i, j);
-            //    applyRules(cell, i, j);
+                applyRules(cell, i, j);
             }
         }        
         
@@ -105,7 +104,7 @@ public final class Game implements Observer{
         
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
-                if(i == 0){
+                if(random.nextBoolean()){
                     grid.CreateCell( i, j);
                 }                               
             }
