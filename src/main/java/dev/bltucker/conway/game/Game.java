@@ -49,7 +49,7 @@ public final class Game implements Observer{
             for(int j = 0; j < grid.getHeight(); j++){
                 
                 Cell cell = grid.getCell(i, j);
-                applyRules(cell, i, j);
+            //    applyRules(cell, i, j);
             }
         }        
         
@@ -65,22 +65,21 @@ public final class Game implements Observer{
         
         if(homeoStasis.checkCell(cell)){
             //we do nothing
-            System.out.println("Cell lives");
+//            System.out.println("Cell lives");
         } else if(overCrowded.checkCell(cell)){
             //kill the cell
-            System.out.println("Cell Dies");
+//            System.out.println("Cell Dies");
             grid.killCell(row, column);
         } else if(reproduction.checkCell(cell)){
             //create the cell
-            System.out.println("Cell Created");
+//            System.out.println("Cell Created");
             grid.CreateCell(row, column);
         } else if(underPopulation.checkCell(cell)){
             //kill the cell
-            System.out.println("Cell DIes");
+//            System.out.println("Cell DIes");
             grid.killCell( row, column);
         }
         
-        System.out.println("******************************");
         
     }
     
@@ -106,7 +105,7 @@ public final class Game implements Observer{
         
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
-                if(random.nextBoolean()){
+                if(i == 0){
                     grid.CreateCell( i, j);
                 }                               
             }
