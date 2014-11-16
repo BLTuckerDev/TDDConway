@@ -10,13 +10,15 @@ public final class Application {
 
     
     public static void main(String[] args){
+        
+        System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
      
-        TickMethod tickMethod = new TimedTick(5000);
+        TickMethod tickMethod = new TimedTick(1000);
         UserInterface ui = new CommandLine();
      
-       // ui = new SwingWindow(50, 50);
+        ui = new SwingWindow(100, 100);
         
-        Game game = new Game(50, 50, tickMethod, ui);
+        Game game = new Game(100, 100, tickMethod, ui);
         game.randomInitialization();
         game.start();
         
