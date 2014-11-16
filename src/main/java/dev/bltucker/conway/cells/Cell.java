@@ -30,15 +30,15 @@ public final class Cell {
     public void addNeighbor(Direction direction) {
         
         if(!neighbors.add(direction)){
-            throw new IllegalArgumentException("The cell already has a neighbor in that direction!");
+       //     throw new IllegalArgumentException("The cell already has a neighbor in that direction!");
         }
     }
 
-    public int getNeighborCount() {        
+    public int getLiveNeighborCount() {        
         return this.neighbors.size();
     }
         
-    public void removeNeighbor(Direction direction){
+    public void removeLiveNeighbor(Direction direction){
         this.neighbors.remove(direction);
     }
 

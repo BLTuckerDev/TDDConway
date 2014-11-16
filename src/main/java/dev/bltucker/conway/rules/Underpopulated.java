@@ -7,6 +7,6 @@ public final class Underpopulated implements CellCondition {
 
     @Override
     public boolean checkCell(Cell cell) {
-        return cell.getState().equals(State.LIVE) && cell.getNeighborCount() < 2;
+        return cell.getState().equals(State.LIVE) && cell.getLiveNeighborCount() < 2;
     }
 }

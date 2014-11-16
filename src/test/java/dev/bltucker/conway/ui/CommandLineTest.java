@@ -1,9 +1,6 @@
 package dev.bltucker.conway.ui;
 
-import dev.bltucker.conway.cells.Cell;
-import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
-import dev.bltucker.conway.ui.CommandLine;
 import java.util.Random;
 import org.junit.Before;
 import org.junit.Test;

@@ -44,10 +44,18 @@ public final class SwingWindow extends JFrame implements UserInterface{
                 
                 
                 Cell cell = grid.getCell(i, j);
+                
+                //0,0 is bottom left in our grid
+                //but it is top left in this window.
+                
+              //  int transformedX = (grid.getWidth()-1) - i;
+                int transformedY = (grid.getHeight() -1) -j;
+                
+                
                 if(cell.getState().equals(State.LIVE)){
-                    cells[i][j].setBackground(java.awt.Color.GREEN);
+                    cells[transformedY][i].setBackground(java.awt.Color.GREEN);
                 } else {
-                    cells[i][j].setBackground(UIManager.getColor ( "Panel.background" ));
+                    cells[transformedY][i].setBackground(UIManager.getColor ( "Panel.background" ));
                 }
                 
                 

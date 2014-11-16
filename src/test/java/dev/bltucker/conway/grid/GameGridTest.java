@@ -26,7 +26,18 @@ public class GameGridTest {
         
         Assert.assertTrue(cell.getState().equals(State.LIVE));
     }
+
     
+    @Test
+    public void addCellsNextToEachOther(){
+        GameGrid grid = new GameGrid(10,10);
+        
+        grid.createCell(1, 1);
+        grid.createCell(1, 2);
+        
+        Assert.assertTrue(true);
+        
+    }
     
     @Test(expected = IllegalArgumentException.class)
     public void addCellOutsideOfGridRows(){

@@ -46,26 +46,30 @@ public class GameGrid {
         
         Cell cell = this.getCell(x, y);
         cell.toggleState();
+
         
         updateNeighbor(x, y+1, Direction.TOP, cell);
         updateNeighbor(x+1, y, Direction.RIGHT, cell);
         updateNeighbor(x, y-1, Direction.DOWN, cell);
         updateNeighbor(x-1, y, Direction.LEFT, cell);
-        
     }
-    
+     
     
     private void updateNeighbor(int neighborRow, int neighborColumn, Direction neighborDirection, Cell currentCell){
         
         if(this.isInBounds(neighborRow, neighborColumn)){
             Cell neighbor = this.getCell(neighborRow, neighborColumn);
             
-            if(neighbor.getState().equals(State.LIVE)){
-                currentCell.addNeighbor(neighborDirection);
+            if(currentCell.getState().equals(State.LIVE)){
                 neighbor.addNeighbor(Direction.getOppositeDirection(neighborDirection));
+                
+                if(neighbor.getState().equals(State.LIVE)){
+                    currentCell.addNeighbor(neighborDirection);
+                }
+                
+                
             } else {
-                currentCell.removeNeighbor(neighborDirection);
-                neighbor.removeNeighbor(Direction.getOppositeDirection(neighborDirection));
+                neighbor.removeLiveNeighbor(Direction.getOppositeDirection(neighborDirection));
             }
         }        
     }

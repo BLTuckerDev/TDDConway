@@ -7,6 +7,6 @@ public final class Reproduction implements CellCondition{
 
     @Override
     public boolean checkCell(Cell cell) {
-        return cell.getState().equals(State.DEAD) && cell.getNeighborCount() == 3;
+        return cell.getState().equals(State.DEAD) && cell.getLiveNeighborCount() == 3;
     }
 }

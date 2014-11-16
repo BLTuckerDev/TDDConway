@@ -1,6 +1,8 @@
 package dev.bltucker.conway.game;
 
+import com.sun.glass.ui.EventLoop;
 import dev.bltucker.conway.cells.Cell;
+import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
 import dev.bltucker.conway.rules.CellCondition;
 import dev.bltucker.conway.rules.Overcrowded;
@@ -32,16 +34,23 @@ public final class Game implements Observer{
     
     public void start(){
         tickMethod.addObserver(this);
-        tickMethod.start();
         ui.draw(grid);
+        tickMethod.start();
     }
     
 
     @Override
     public void update(Observable o, Object arg) {
+        
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
                 Cell cell = grid.getCell(i, j);
+                
+                if(cell.getState().equals(State.LIVE)){
+                    System.out.println("(" + i +"," + j + ")");
+                    System.out.println("Neighbors: " +cell.getLiveNeighborCount());
+                }
+                
                 applyRules(cell, i, j);
             }
         }        
@@ -50,6 +59,9 @@ public final class Game implements Observer{
 
     
     private void applyRules(Cell cell, int row, int column){
+             
+        
+        
         if(overCrowded.checkCell(cell)){
             grid.killCell(row, column);
         } else if(reproduction.checkCell(cell)){
@@ -77,14 +89,21 @@ public final class Game implements Observer{
 
     void randomInitialization() {
 
-        Random random = new Random(System.currentTimeMillis());
+        grid.createCell(1, 0);
+        grid.createCell(0, 0);
+        grid.createCell(0,1);
         
-        for(int i = 0; i < grid.getWidth(); i++){
-            for(int j = 0; j < grid.getHeight(); j++){
-                if(random.nextBoolean()){
-                    grid.createCell( i, j);
-                }                               
-            }
-        }
+        grid.createCell(3, 2);
+        grid.createCell(3, 3);
+        grid.createCell(3, 4);
+//        Random random = new Random(System.currentTimeMillis());
+//        
+//        for(int i = 0; i < grid.getWidth(); i++){
+//            for(int j = 0; j < grid.getHeight(); j++){
+//                if(random.nextBoolean()){
+//                    grid.createCell( i, j);
+//                }                               
+//            }
+//        }
     }
 }
