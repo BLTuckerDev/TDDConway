@@ -22,12 +22,12 @@ public final class Application {
         System.setProperty("java.util.Arrays.useLegacyMergeSort", "true");
      
         TickMethod tickMethod = new TimedTick(1000);
-        UserInterface ui = new CommandLine();
         
-        int width = 10;
-        int height = 10;
+        int width = 100;
+        int height = 100;
      
-        ui = new SwingWindow(width, height);
+        UserInterface ui = new SwingWindow(width, height);
+        //UserInterface ui = new CommandLine();
         
         Game game = new Game(width, height, tickMethod, ui);
         game.randomInitialization();

@@ -1,6 +1,5 @@
 package dev.bltucker.conway.ui;
 
-import com.sun.prism.paint.Color;
 import dev.bltucker.conway.cells.Cell;
 import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
@@ -37,20 +36,16 @@ public final class SwingWindow extends JFrame implements UserInterface{
 
     @Override
     public void draw(GameGrid grid) {
-    
         
         for(int i = 0; i < grid.getWidth(); i++){
             for(int j = 0; j < grid.getHeight(); j++){
-                
                 
                 Cell cell = grid.getCell(i, j);
                 
                 //0,0 is bottom left in our grid
                 //but it is top left in this window.
                 
-              //  int transformedX = (grid.getWidth()-1) - i;
                 int transformedY = (grid.getHeight() -1) -j;
-                
                 
                 if(cell.getState().equals(State.LIVE)){
                     cells[transformedY][i].setBackground(java.awt.Color.GREEN);
@@ -58,16 +53,9 @@ public final class SwingWindow extends JFrame implements UserInterface{
                     cells[transformedY][i].setBackground(UIManager.getColor ( "Panel.background" ));
                 }
                 
-                
-                
             }
         }
     
     }
-    
-    
-    
-    
-    
 
 }

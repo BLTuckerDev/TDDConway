@@ -1,14 +1,10 @@
 package dev.bltucker.conway.game;
 
-import com.sun.glass.ui.EventLoop;
 import dev.bltucker.conway.cells.Cell;
-import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
 import dev.bltucker.conway.rules.CellCondition;
 import dev.bltucker.conway.rules.Homeostasis;
-import dev.bltucker.conway.rules.Overcrowded;
 import dev.bltucker.conway.rules.Reproduction;
-import dev.bltucker.conway.rules.Underpopulated;
 import dev.bltucker.conway.tickmethods.TickMethod;
 import dev.bltucker.conway.ui.UserInterface;
 import java.util.Observable;
@@ -21,9 +17,7 @@ public final class Game implements Observer{
     private final UserInterface ui;
     private  GameGrid grid;
     
-    private final CellCondition overCrowded = new Overcrowded();
     private final CellCondition reproduction = new Reproduction();
-    private final CellCondition underPopulation = new Underpopulated();
     private final CellCondition homeostasis = new Homeostasis();
     
     
@@ -61,15 +55,9 @@ public final class Game implements Observer{
     private void applyRules(Cell cell, int row, int column, GameGrid nextGenerationGrid){
              
         if(homeostasis.checkCell(cell)){
-            //he lives
             nextGenerationGrid.createCell(row, column);
-        }else if(overCrowded.checkCell(cell)){
-            //grid.killCell(row, column);
         } else if(reproduction.checkCell(cell)){
             nextGenerationGrid.createCell(row, column);
-           // grid.createCell(row, column);
-        } else if(underPopulation.checkCell(cell)){
-         //   grid.killCell( row, column);
         }
     }
     
@@ -91,13 +79,6 @@ public final class Game implements Observer{
 
     void randomInitialization() {
 
-//        grid.createCell(1, 0);
-//        grid.createCell(0, 0);
-//        grid.createCell(0,1);
-//        
-//        grid.createCell(3, 2);
-//        grid.createCell(3, 3);
-//        grid.createCell(3, 4);
         Random random = new Random(System.currentTimeMillis());
         
         for(int i = 0; i < grid.getWidth(); i++){

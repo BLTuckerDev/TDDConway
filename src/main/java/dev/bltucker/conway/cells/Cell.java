@@ -27,11 +27,8 @@ public final class Cell {
         this.setState(State.getOppositeState(this.getState()));
     }
     
-    public void addNeighbor(Direction direction) {
-        
-        if(!neighbors.add(direction)){
-       //     throw new IllegalArgumentException("The cell already has a neighbor in that direction!");
-        }
+    public boolean addNeighbor(Direction direction) {
+        return neighbors.add(direction);
     }
 
     public int getLiveNeighborCount() {        

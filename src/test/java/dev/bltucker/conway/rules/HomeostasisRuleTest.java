@@ -10,6 +10,7 @@ public class HomeostasisRuleTest {
     
     @Test
     public void WillSurviveToNextGeneration() {
+        
         Cell cell = new Cell();
         cell.setState(State.LIVE);
         cell.addNeighbor(Direction.NORTH);

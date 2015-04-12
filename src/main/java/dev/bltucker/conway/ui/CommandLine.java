@@ -4,9 +4,6 @@ import dev.bltucker.conway.cells.Cell;
 import dev.bltucker.conway.cells.State;
 import dev.bltucker.conway.grid.GameGrid;
 import java.io.Console;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public final class CommandLine implements UserInterface {
 
@@ -37,7 +34,7 @@ public final class CommandLine implements UserInterface {
         if(cell.getState().equals(State.LIVE)){
             System.out.print("1");
         } else {
-            System.out.print("0");
+            System.out.print(" ");
         }
     }
     

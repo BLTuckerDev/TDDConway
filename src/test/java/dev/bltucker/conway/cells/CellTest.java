@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CellTest {
+    
   
     @Test
     public void CellNeighborCountTest(){
@@ -16,12 +17,12 @@ public class CellTest {
     }
     
     
-//    @Test(expected=IllegalArgumentException.class)
     public void DoNotAddANeighborTwiceTest(){
         
         Cell cell = new Cell();
         cell.addNeighbor(Direction.NORTH);
-        cell.addNeighbor(Direction.NORTH);            
+        boolean result = cell.addNeighbor(Direction.NORTH);            
+        Assert.assertTrue(result);
     }
     
     
