@@ -1,0 +1,1 @@
+This project was my first attempt at a test first project. After finishing Kent Beck's TDD by example I thought I would give it a try by implementing Conways' game of life. This repository is the result of that experiment.
