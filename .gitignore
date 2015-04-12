@@ -1,1 +1,12 @@
+<<<<<<< HEAD
 /target/
+=======
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+>>>>>>> 6d93074a5dd43921f882c36c4018257cce25fe0c
